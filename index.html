@@ -27,7 +27,8 @@ body{
 
 .site-wrapper{
     position:relative;
-    width:1200px;
+    max-width:1200px; /* responsive */
+    width:100%;
     margin:20px auto;
 }
 
@@ -38,25 +39,47 @@ body{
 
 .point{
     position:absolute;
+    /* larger invisible hit area for touch while the visual dot is the pseudo-element */
+    width:32px;
+    height:32px;
+    transform:translate(-50%,-50%); /* center the element on the coordinates */
+    background:transparent;
+    border:none;
+    cursor:pointer;
+}
+
+.point::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
     width:12px;
     height:12px;
     border-radius:50%;
     background:transparent;
     border:2px solid transparent;
+    box-sizing:border-box;
+    pointer-events:none; /* visual element doesn't intercept pointer events */
 }
 
-.point:hover{
-    border:2px solid #00aaff;
+.point:hover::after{
+    border-color:#00aaff;
     box-shadow:0 0 8px #00aaff;
 }
 
-.viewed{
-    border:2px solid orange;
+.point:focus::after{
+    outline:2px solid #00aaff;
+    box-shadow:0 0 8px #00aaff;
+}
+
+.viewed::after{
+    border-color:orange;
     box-shadow:0 0 8px orange;
 }
 
-.datum{
-    border:2px solid #0066cc;
+.datum::after{
+    border-color:#0066cc;
 }
 
 .modal{
@@ -125,9 +148,10 @@ alt="Contour Survey Grid">
 
 <!-- DATUM -->
 
-    <button class="point datum"
+    <button type="button" class="point datum"
     style="left:19%; top:86.8%;"
-    onclick="openPoint('Datum Point','Images/1525.jpg',this)">
+    aria-label="Datum Point"
+    onclick="openPoint('Datum Point','Images/1525.jpg',this)" >
     </button>
 
     <!-- ROW 1 -->
@@ -136,74 +160,80 @@ alt="Contour Survey Grid">
 
 <!-- ROW 1 -->
 
-<button class="point"
+<button type="button" class="point"
 style="left:18.8%; top:5.8%;"
+aria-label="Point 1"
 onclick="openPoint('Point 1','Images/1420.jpg',this)">
 </button>
 
-<button class="point"
+<button type="button" class="point"
 style="left:31.5%; top:5.8%;"
+aria-label="Point 2"
 onclick="openPoint('Point 2','Images/1390.jpg',this)">
 </button>
 
-<button class="point"
+<button type="button" class="point"
 style="left:44.2%; top:5.8%;"
+aria-label="Point 3"
 onclick="openPoint('Point 3','Images/1330.jpg',this)">
 </button>
 
-<button class="point"
+<button type="button" class="point"
 style="left:56.9%; top:5.8%;"
+aria-label="Point 4"
 onclick="openPoint('Point 4','Images/1325.jpg',this)">
 </button>
 
-<button class="point"
+<button type="button" class="point"
 style="left:69.6%; top:5.8%;"
+aria-label="Point 5"
 onclick="openPoint('Point 5','Images/1300.jpg',this)">
 </button>
 
-<button class="point"
+<button type="button" class="point"
 style="left:82.3%; top:5.8%;"
+aria-label="Point 6"
 onclick="openPoint('Point 6','Images/1225.jpg',this)">
 </button>
     <!-- ROW 2 -->
 
-<button class="point" style="left:18.8%; top:22.2%;" onclick="openPoint('Point 7','Images/1440.jpg',this)"></button>
-<button class="point" style="left:31.5%; top:22.2%;" onclick="openPoint('Point 8','Images/1475.jpg',this)"></button>
-<button class="point" style="left:44.2%; top:22.2%;" onclick="openPoint('Point 9','Images/1475.jpg',this)"></button>
-<button class="point" style="left:56.9%; top:22.2%;" onclick="openPoint('Point 10','Images/1470.jpg',this)"></button>
-<button class="point" style="left:69.6%; top:22.2%;" onclick="openPoint('Point 11','Images/1410.jpg',this)"></button>
-<button class="point" style="left:82.3%; top:22.2%;" onclick="openPoint('Point 12','Images/1315.jpg',this)"></button>
+<button type="button" class="point" style="left:18.8%; top:22.2%;" aria-label="Point 7" onclick="openPoint('Point 7','Images/1440.jpg',this)"></button>
+<button type="button" class="point" style="left:31.5%; top:22.2%;" aria-label="Point 8" onclick="openPoint('Point 8','Images/1475.jpg',this)"></button>
+<button type="button" class="point" style="left:44.2%; top:22.2%;" aria-label="Point 9" onclick="openPoint('Point 9','Images/1475.jpg',this)"></button>
+<button type="button" class="point" style="left:56.9%; top:22.2%;" aria-label="Point 10" onclick="openPoint('Point 10','Images/1470.jpg',this)"></button>
+<button type="button" class="point" style="left:69.6%; top:22.2%;" aria-label="Point 11" onclick="openPoint('Point 11','Images/1410.jpg',this)"></button>
+<button type="button" class="point" style="left:82.3%; top:22.2%;" aria-label="Point 12" onclick="openPoint('Point 12','Images/1315.jpg',this)"></button>
 
     <!-- ROW 3 -->
 
-<button class="point" style="left:18.8%; top:38.8%;" onclick="openPoint('Point 13','Images/1525.jpg',this)"></button>
-<button class="point" style="left:31.5%; top:38.8%;" onclick="openPoint('Point 14','Images/1560.jpg',this)"></button>
-<button class="point" style="left:44.2%; top:38.8%;" onclick="openPoint('Point 15','Images/1540.jpg',this)"></button>
-<button class="point" style="left:56.9%; top:38.8%;" onclick="openPoint('Point 16','Images/1560.jpg',this)"></button>
-<button class="point" style="left:69.6%; top:38.8%;" onclick="openPoint('Point 17','Images/1490.jpg',this)"></button>
-<button class="point" style="left:82.3%; top:38.8%;" onclick="openPoint('Point 18','Images/1455.jpg',this)"></button>
+<button type="button" class="point" style="left:18.8%; top:38.8%;" aria-label="Point 13" onclick="openPoint('Point 13','Images/1525.jpg',this)"></button>
+<button type="button" class="point" style="left:31.5%; top:38.8%;" aria-label="Point 14" onclick="openPoint('Point 14','Images/1560.jpg',this)"></button>
+<button type="button" class="point" style="left:44.2%; top:38.8%;" aria-label="Point 15" onclick="openPoint('Point 15','Images/1540.jpg',this)"></button>
+<button type="button" class="point" style="left:56.9%; top:38.8%;" aria-label="Point 16" onclick="openPoint('Point 16','Images/1560.jpg',this)"></button>
+<button type="button" class="point" style="left:69.6%; top:38.8%;" aria-label="Point 17" onclick="openPoint('Point 17','Images/1490.jpg',this)"></button>
+<button type="button" class="point" style="left:82.3%; top:38.8%;" aria-label="Point 18" onclick="openPoint('Point 18','Images/1455.jpg',this)"></button>
 
     <!-- ROW 4 -->
 
-<button class="point" style="left:18.8%; top:55.4%;" onclick="openPoint('Point 19','Images/1630.jpg',this)"></button>
-<button class="point" style="left:31.5%; top:55.4%;" onclick="openPoint('Point 20','Images/1625.jpg',this)"></button>
-<button class="point" style="left:44.2%; top:55.4%;" onclick="openPoint('Point 21','Images/1630.jpg',this)"></button>
-<button class="point" style="left:56.9%; top:55.4%;" onclick="openPoint('Point 22','Images/1630.jpg',this)"></button>
-<button class="point" style="left:69.6%; top:55.4%;" onclick="openPoint('Point 23','Images/1630.jpg',this)"></button>
-<button class="point" style="left:82.3%; top:55.4%;" onclick="openPoint('Point 24','Images/1625.jpg',this)"></button>
+<button type="button" class="point" style="left:18.8%; top:55.4%;" aria-label="Point 19" onclick="openPoint('Point 19','Images/1630.jpg',this)"></button>
+<button type="button" class="point" style="left:31.5%; top:55.4%;" aria-label="Point 20" onclick="openPoint('Point 20','Images/1625.jpg',this)"></button>
+<button type="button" class="point" style="left:44.2%; top:55.4%;" aria-label="Point 21" onclick="openPoint('Point 21','Images/1630.jpg',this)"></button>
+<button type="button" class="point" style="left:56.9%; top:55.4%;" aria-label="Point 22" onclick="openPoint('Point 22','Images/1630.jpg',this)"></button>
+<button type="button" class="point" style="left:69.6%; top:55.4%;" aria-label="Point 23" onclick="openPoint('Point 23','Images/1630.jpg',this)"></button>
+<button type="button" class="point" style="left:82.3%; top:55.4%;" aria-label="Point 24" onclick="openPoint('Point 24','Images/1625.jpg',this)"></button>
 
     <!-- ROW 5 -->
 
-<button class="point" style="left:18.8%; top:72.0%;" onclick="openPoint('Point 25','Images/1680.jpg',this)"></button>
-<button class="point" style="left:31.5%; top:72.0%;" onclick="openPoint('Point 26','Images/1740.jpg',this)"></button>
-<button class="point" style="left:44.2%; top:72.0%;" onclick="openPoint('Point 27','Images/1830.jpg',this)"></button>
-<button class="point" style="left:56.9%; top:72.0%;" onclick="openPoint('Point 28','Images/1835.jpg',this)"></button>
-<button class="point" style="left:69.6%; top:72.0%;" onclick="openPoint('Point 29','Images/1820.jpg',this)"></button>
-<button class="point" style="left:82.3%; top:72.0%;" onclick="openPoint('Point 30','Images/1805.jpg',this)"></button>
+<button type="button" class="point" style="left:18.8%; top:72.0%;" aria-label="Point 25" onclick="openPoint('Point 25','Images/1680.jpg',this)"></button>
+<button type="button" class="point" style="left:31.5%; top:72.0%;" aria-label="Point 26" onclick="openPoint('Point 26','Images/1740.jpg',this)"></button>
+<button type="button" class="point" style="left:44.2%; top:72.0%;" aria-label="Point 27" onclick="openPoint('Point 27','Images/1830.jpg',this)"></button>
+<button type="button" class="point" style="left:56.9%; top:72.0%;" aria-label="Point 28" onclick="openPoint('Point 28','Images/1835.jpg',this)"></button>
+<button type="button" class="point" style="left:69.6%; top:72.0%;" aria-label="Point 29" onclick="openPoint('Point 29','Images/1820.jpg',this)"></button>
+<button type="button" class="point" style="left:82.3%; top:72.0%;" aria-label="Point 30" onclick="openPoint('Point 30','Images/1805.jpg',this)"></button>
 
 </div>
 
-<div class="modal" id="modal">
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="title">
 
     <div class="modal-content">
 
@@ -213,9 +243,9 @@ onclick="openPoint('Point 6','Images/1225.jpg',this)">
             Observe the staff reading and record it in your workbook.
         </p>
 
-        <img id="photo">
+        <img id="photo" alt="">
 
-        <button class="close-btn" onclick="closeModal()">
+        <button class="close-btn" onclick="closeModal()" type="button">
             Close
         </button>
 
@@ -226,29 +256,50 @@ onclick="openPoint('Point 6','Images/1225.jpg',this)">
 <script>
 
 let viewedPoints = new Set();
+let lastFocusedElement = null;
 
 function openPoint(title,image,button){
 
+    // set modal title and image
     document.getElementById("title").innerHTML = title;
 
-    document.getElementById("photo").src = image;
+    const photo = document.getElementById("photo");
+    photo.src = image;
+    photo.alt = title + " staff reading";
 
-    document.getElementById("modal").style.display = "flex";
+    // remember which element opened the modal so we can restore focus
+    lastFocusedElement = button;
 
+    // show modal and move focus into it
+    const modal = document.getElementById("modal");
+    modal.style.display = "flex";
+
+    // mark point as viewed visually
     button.classList.add("viewed");
 
+    // update viewed count (exclude datum)
     if(title !== "Datum Point"){
-
         viewedPoints.add(title);
+        document.getElementById("viewCount").innerHTML = viewedPoints.size;
+    }
 
-        document.getElementById("viewCount").innerHTML =
-        viewedPoints.size;
+    // focus the close button for keyboard users
+    const closeBtn = document.querySelector('.close-btn');
+    if(closeBtn){
+        closeBtn.focus({preventScroll:true});
     }
 }
 
 function closeModal(){
 
-    document.getElementById("modal").style.display = "none";
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+
+    // restore focus to the last opened point button
+    if(lastFocusedElement && typeof lastFocusedElement.focus === 'function'){
+        lastFocusedElement.focus({preventScroll:true});
+        lastFocusedElement = null;
+    }
 }
 
 window.onclick = function(event){
@@ -260,6 +311,14 @@ window.onclick = function(event){
         closeModal();
     }
 };
+
+// close modal with Escape key
+window.addEventListener('keydown', function(e){
+    const modal = document.getElementById('modal');
+    if(modal.style.display === 'flex' && e.key === 'Escape'){
+        closeModal();
+    }
+});
 
 </script>
 
