@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CPCCBC4018 Virtual Survey Exercise</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    margin:0;
+}
+
+.header{
+    background:#1f4e79;
+    color:white;
+    padding:20px;
+}
+
+.header h1{
+    margin:0;
+}
+
+.site-wrapper{
+    position:relative;
+    width:1200px;
+    margin:20px auto;
+}
+
+.site-image{
+    width:100%;
+    display:block;
+}
+
+.point{
+    position:absolute;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:transparent;
+    border:2px solid transparent;
+}
+
+.point:hover{
+    border:2px solid #00aaff;
+    box-shadow:0 0 8px #00aaff;
+}
+
+.viewed{
+    border:2px solid orange;
+    box-shadow:0 0 8px orange;
+}
+
+.datum{
+    border:2px solid #0066cc;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content{
+    background:white;
+    width:900px;
+    max-width:95%;
+    padding:20px;
+    border-radius:10px;
+}
+
+.modal-content img{
+    width:100%;
+    max-height:70vh;
+    object-fit:contain;
+}
+
+.close-btn{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#1f4e79;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+.instructions{
+    max-width:1200px;
+    margin:20px auto;
+    background:white;
+    padding:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>CPCCBC4018 Virtual Survey Exercise</h1>
+    <p>Datum RL = 3.000</p>
+<p>Points Viewed:
+<span id="viewCount">0</span> / 30
+</p>
+</div>
+
+<div class="instructions">
+    <strong>Instructions</strong><br>
+    Click the Datum Point first, then visit each survey station and record the staff reading shown in the image.
+</div>
+
+<div class="site-wrapper">
+
+<img src="Images/contour-grid.png"
+class="site-image"
+alt="Contour Survey Grid">
+
+<!-- DATUM -->
+
+    <button class="point datum"
+    style="left:19%; top:86.8%;"
+    onclick="openPoint('Datum Point','images/1525.jpg',this)">
+    </button>
+
+    <!-- ROW 1 -->
+
+ <!-- ROW 1 -->
+
+<!-- ROW 1 -->
+
+<button class="point"
+style="left:18.8%; top:5.8%;"
+onclick="openPoint('Point 1','Images/1420.jpg',this)">
+</button>
+
+<button class="point"
+style="left:31.5%; top:5.8%;"
+onclick="openPoint('Point 2','Images/1390.jpg',this)">
+</button>
+
+<button class="point"
+style="left:44.2%; top:5.8%;"
+onclick="openPoint('Point 3','Images/1330.jpg',this)">
+</button>
+
+<button class="point"
+style="left:56.9%; top:5.8%;"
+onclick="openPoint('Point 4','Images/1325.jpg',this)">
+</button>
+
+<button class="point"
+style="left:69.6%; top:5.8%;"
+onclick="openPoint('Point 5','Images/1300.jpg',this)">
+</button>
+
+<button class="point"
+style="left:82.3%; top:5.8%;"
+onclick="openPoint('Point 6','Images/1225.jpg',this)">
+</button>
+    <!-- ROW 2 -->
+
+<button class="point" style="left:18.8%; top:22.2%;" onclick="openPoint('Point 7','Images/1440.jpg',this)"></button>
+<button class="point" style="left:31.5%; top:22.2%;" onclick="openPoint('Point 8','Images/1475.jpg',this)"></button>
+<button class="point" style="left:44.2%; top:22.2%;" onclick="openPoint('Point 9','Images/1475.jpg',this)"></button>
+<button class="point" style="left:56.9%; top:22.2%;" onclick="openPoint('Point 10','Images/1470.jpg',this)"></button>
+<button class="point" style="left:69.6%; top:22.2%;" onclick="openPoint('Point 11','Images/1410.jpg',this)"></button>
+<button class="point" style="left:82.3%; top:22.2%;" onclick="openPoint('Point 12','Images/1315.jpg',this)"></button>
+
+    <!-- ROW 3 -->
+
+<button class="point" style="left:18.8%; top:38.8%;" onclick="openPoint('Point 13','Images/1525.jpg',this)"></button>
+<button class="point" style="left:31.5%; top:38.8%;" onclick="openPoint('Point 14','Images/1560.jpg',this)"></button>
+<button class="point" style="left:44.2%; top:38.8%;" onclick="openPoint('Point 15','Images/1540.jpg',this)"></button>
+<button class="point" style="left:56.9%; top:38.8%;" onclick="openPoint('Point 16','Images/1560.jpg',this)"></button>
+<button class="point" style="left:69.6%; top:38.8%;" onclick="openPoint('Point 17','Images/1490.jpg',this)"></button>
+<button class="point" style="left:82.3%; top:38.8%;" onclick="openPoint('Point 18','Images/1455.jpg',this)"></button>
+
+    <!-- ROW 4 -->
+
+<button class="point" style="left:18.8%; top:55.4%;" onclick="openPoint('Point 19','Images/1630.jpg',this)"></button>
+<button class="point" style="left:31.5%; top:55.4%;" onclick="openPoint('Point 20','Images/1625.jpg',this)"></button>
+<button class="point" style="left:44.2%; top:55.4%;" onclick="openPoint('Point 21','Images/1630.jpg',this)"></button>
+<button class="point" style="left:56.9%; top:55.4%;" onclick="openPoint('Point 22','Images/1630.jpg',this)"></button>
+<button class="point" style="left:69.6%; top:55.4%;" onclick="openPoint('Point 23','Images/1630.jpg',this)"></button>
+<button class="point" style="left:82.3%; top:55.4%;" onclick="openPoint('Point 24','Images/1625.jpg',this)"></button>
+
+    <!-- ROW 5 -->
+
+<button class="point" style="left:18.8%; top:72.0%;" onclick="openPoint('Point 25','Images/1680.jpg',this)"></button>
+<button class="point" style="left:31.5%; top:72.0%;" onclick="openPoint('Point 26','Images/1740.jpg',this)"></button>
+<button class="point" style="left:44.2%; top:72.0%;" onclick="openPoint('Point 27','Images/1830.jpg',this)"></button>
+<button class="point" style="left:56.9%; top:72.0%;" onclick="openPoint('Point 28','Images/1835.jpg',this)"></button>
+<button class="point" style="left:69.6%; top:72.0%;" onclick="openPoint('Point 29','Images/1820.jpg',this)"></button>
+<button class="point" style="left:82.3%; top:72.0%;" onclick="openPoint('Point 30','Images/1805.jpg',this)"></button>
+
+</div>
+
+<div class="modal" id="modal">
+
+    <div class="modal-content">
+
+        <h2 id="title"></h2>
+
+        <p>
+            Observe the staff reading and record it in your workbook.
+        </p>
+
+        <img id="photo">
+
+        <button class="close-btn" onclick="closeModal()">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+let viewedPoints = new Set();
+
+function openPoint(title,image,button){
+
+    document.getElementById("title").innerHTML = title;
+
+    document.getElementById("photo").src = image;
+
+    document.getElementById("modal").style.display = "flex";
+
+    button.classList.add("viewed");
+
+    if(title !== "Datum Point"){
+
+        viewedPoints.add(title);
+
+        document.getElementById("viewCount").innerHTML =
+        viewedPoints.size;
+    }
+}
+
+function closeModal(){
+
+    document.getElementById("modal").style.display = "none";
+}
+
+window.onclick = function(event){
+
+    const modal = document.getElementById("modal");
+
+    if(event.target === modal){
+
+        closeModal();
+    }
+};
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CPCCBC4018 Virtual Survey Exercise</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    margin:0;
+}
+
+.header{
+    background:#1f4e79;
+    color:white;
+    padding:20px;
+}
+
+.header h1{
+    margin:0;
+}
+
+.site-wrapper{
+    position:relative;
+    width:1200px;
+    margin:20px auto;
+}
+
+.site-image{
+    width:100%;
+    display:block;
+}
+
+.point{
+    position:absolute;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    border:3px solid rgba(255,255,255,0.95);
+    background:transparent;
+    cursor:pointer;
+    transform:translate(-50%,-50%);
+    transition:0.25s;
+}
+
+.point:hover{
+    border:3px solid #00aaff;
+    box-shadow:0 0 12px #00aaff;
+}
+
+.viewed{
+    border:3px solid orange;
+    box-shadow:0 0 12px orange;
+}
+
+.datum{
+    border:3px solid #0066cc;
+    background:rgba(0,102,204,0.25);
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content{
+    background:white;
+    width:900px;
+    max-width:95%;
+    padding:20px;
+    border-radius:10px;
+}
+
+.modal-content img{
+    width:100%;
+    max-height:70vh;
+    object-fit:contain;
+}
+
+.close-btn{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#1f4e79;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+.instructions{
+    max-width:1200px;
+    margin:20px auto;
+    background:white;
+    padding:15px;
+}
+
+</style>
+</head>
+
+<body>
